@@ -1,0 +1,39 @@
+step 1
+- go to the root and create a Docker file and .dockerignore
+add the below code
+
+CODE STARTE //
+FROM node:18-alpine
+
+  // creates dir called app
+WORKDIR /app
+
+  // copies the current to app dir
+COPY . .
+
+// update this as your req, here its node and prisma
+RUN npm install
+RUN npm run build
+RUN npx prisma generate
+
+  // expose the port in which you want to run this container
+EXPOSE 3000
+
+
+  // commands to run the container
+CMD [ "node", "dist/index.js" ]
+
+CODE ENDS //
+
+step 2
+- Now from the same dir, "docker build -t prisma-be-app ." // this will create a image in the local with the name prisma-be-app
+
+step 3
+- Now run this command to start run the above image "docker run -p 3001:3000 primsa-be-app" // make sure the name is same as the image name and the port is exposed on the image  
+
+
+
+
+
+
+  
