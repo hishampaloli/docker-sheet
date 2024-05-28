@@ -30,6 +30,8 @@ step 2
 
 step 3
 - Now run this command to start run the above image "docker run -p 3001:3000 primsa-be-app" // make sure the name is same as the image name and the port is exposed on the image  
+or 
+"docker run -p 3001:3000 -e DB_URL="cyuf" primsa-be-app" // add the flag -e for adding env to the container
 
 
 
