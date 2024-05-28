@@ -1,0 +1,15 @@
+if containers want to talk with each other lets say, if a node_backend container wants to connect with mongo container they have to be in a single network.
+
+step 1
+  - docker network create my_network
+
+step 2
+  - start a node container with the above created network
+  - docker run -d -p 3001:3000 --name cont_name --network my_network node_backend
+
+step 3
+  - start a mongo container with the above same network attached to the node container
+  - docker run -d -v mongo_vol:/data/db --name my_mongo_cont --network my_network -p 27017:27017 mongo
+
+
+The connection URL of the mongo will looks like 'mongodb://my_mongo_cont:27017/myDbs'
