@@ -1,1 +1,10 @@
-.
+If there is not volume in the pg container, whenever we restart the image, all the data will be gone. To avoid such a situation we have to attach volumes to the container while running,
+"docker run -p 1234:5432 postgres" // this will loose data with restart
+  
+step 1
+- run "docker volume create 'pg_vol'"
+
+step 2
+- attach the above created volume while starting a container
+- "docker run --name postgres --network my_network -p 5432:5432 -e POSTGRES_PASSWORD=your_password -v pg_vol:/var/lib/postgresql/data -d postgres" // this will attach the volume and the data wont be lost
+  
